@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles can go here */
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500;
+  }
+  
+  /* Logo styling */
+  .sprouty-logo {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  .sprouty-logo-large {
+    @apply h-16 w-16 mx-auto mb-4 transition-transform duration-200 hover:scale-105;
+  }
+}
+
+/* Hide scrollbar but maintain scroll functionality */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
