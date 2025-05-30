@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://backend-sprouty-k3my.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://backend-sprouty.onrender.com/api';
 
 // List of allowed origins for CORS verification
 const ALLOWED_ORIGINS = [
