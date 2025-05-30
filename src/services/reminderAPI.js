@@ -26,7 +26,14 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error('Reminder API Error:', error.response?.data || error.message);
+    // Enhanced error handling for CORS issues
+    if (error.message === 'Network Error') {
+      console.error('Reminder API CORS Error: Unable to connect to the API server. This may be due to a CORS policy restriction.');
+      console.error('Current origin:', window.location.origin);
+      console.error('API URL:', API_URL);
+    } else {
+      console.error('Reminder API Error:', error.response?.data || error.message);
+    }
     return Promise.reject(error);
   }
 );
@@ -54,12 +61,22 @@ export const reminderAPI = {
     }
   },
   
-  // Get due reminders
+  // Get due reminders with enhanced error handling
   getDueReminders: async () => {
     try {
       const response = await api.get('/reminders/due');
       return response.data;
     } catch (error) {
+      // Enhanced error handling for CORS issues
+      if (error.message === 'Network Error') {
+        console.error('Error fetching due reminders: Network Error (possible CORS issue)');
+        // Return a more helpful error
+        return { 
+          success: false, 
+          error: 'Network Error - Unable to connect to the reminder service. If this persists, please contact support.',
+          isCorsError: true
+        };
+      }
       console.error('Error fetching due reminders:', error);
       return { success: false, error: error.response?.data?.error || error.message };
     }
