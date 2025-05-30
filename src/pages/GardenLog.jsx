@@ -3,7 +3,7 @@ import Sidebar from '../components/Sidebar';
 import { Search, Droplets, AlertCircle, Scissors, Flower, Edit, Check, X, Loader, Edit2, Stethoscope } from 'lucide-react';
 import { plantAPI, diagnosisAPI } from '../services/api';
 import PlantHistoryLog from '../components/PlantHistoryLog';
-import PlantDiagnoseLog from '../components/PlantDiagnoseLog';
+import PlantDiagnoseLog from '../components/PlantHistoryLog'; // Import from the existing file
 
 
 const PlantLogCard = ({ plant, onNotesUpdate }) => {
