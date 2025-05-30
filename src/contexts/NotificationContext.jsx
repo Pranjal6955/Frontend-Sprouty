@@ -143,7 +143,17 @@ export const NotificationProvider = ({ children }) => {
       if (response.success !== false && response.data) {
         processReminderNotifications(response.data);
         setLastCheck(new Date());
-      } else {
+      } 
+      else if (response.isCorsError || response.isAuthError) {
+        // Use fallback data if available
+        if (response.fallbackData) {
+          console.log('Using fallback data due to connectivity issues');
+          processReminderNotifications(response.fallbackData);
+        }
+        
+        throw new Error(response.error || 'Failed to fetch due reminders');
+      }
+      else {
         throw new Error(response.error || 'Failed to fetch due reminders');
       }
     } catch (error) {
